@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ruenp5wpjq4d"]
+
+[ext_resource type="Script" uid="uid://c50llxp1nu4g5" path="res://puzzles/test_sudoku_puzzle_static_methods.gd" id="1_ishy7"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_ishy7")

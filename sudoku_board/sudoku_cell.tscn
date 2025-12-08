@@ -1,0 +1,259 @@
+[gd_scene load_steps=3 format=3 uid="uid://d24elrsr1f6tm"]
+
+[ext_resource type="Script" uid="uid://cpcvx24q346y0" path="res://sudoku_board/sudoku_cell.gd" id="1_y76a0"]
+[ext_resource type="Script" uid="uid://bben3wox7mlcy" path="res://sudoku_board/sub_cell.gd" id="2_ks02r"]
+
+[node name="SudokuCell" type="Control"]
+custom_minimum_size = Vector2(69, 69)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_y76a0")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="SubCells" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(69, 69)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.5
+offset_top = -34.5
+offset_right = 34.5
+offset_bottom = 34.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 3
+
+[node name="PencilCell1" type="Control" parent="SubCells"]
+custom_minimum_size = Vector2(23, 23)
+layout_mode = 2
+mouse_filter = 1
+script = ExtResource("2_ks02r")
+digit = "1"
+
+[node name="Value" type="Label" parent="SubCells/PencilCell1"]
+visible = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PencilCell2" type="Control" parent="SubCells"]
+custom_minimum_size = Vector2(23, 23)
+layout_mode = 2
+mouse_filter = 1
+script = ExtResource("2_ks02r")
+digit = "2"
+
+[node name="Value" type="Label" parent="SubCells/PencilCell2"]
+visible = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PencilCell3" type="Control" parent="SubCells"]
+custom_minimum_size = Vector2(23, 23)
+layout_mode = 2
+mouse_filter = 1
+script = ExtResource("2_ks02r")
+digit = "3"
+
+[node name="Value" type="Label" parent="SubCells/PencilCell3"]
+visible = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PencilCell4" type="Control" parent="SubCells"]
+custom_minimum_size = Vector2(23, 23)
+layout_mode = 2
+mouse_filter = 1
+script = ExtResource("2_ks02r")
+digit = "4"
+
+[node name="Value" type="Label" parent="SubCells/PencilCell4"]
+visible = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PencilCell5" type="Control" parent="SubCells"]
+custom_minimum_size = Vector2(23, 23)
+layout_mode = 2
+mouse_filter = 1
+script = ExtResource("2_ks02r")
+digit = "5"
+
+[node name="Value" type="Label" parent="SubCells/PencilCell5"]
+visible = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PencilCell6" type="Control" parent="SubCells"]
+custom_minimum_size = Vector2(23, 23)
+layout_mode = 2
+mouse_filter = 1
+script = ExtResource("2_ks02r")
+digit = "6"
+
+[node name="Value" type="Label" parent="SubCells/PencilCell6"]
+visible = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "6"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PencilCell7" type="Control" parent="SubCells"]
+custom_minimum_size = Vector2(23, 23)
+layout_mode = 2
+mouse_filter = 1
+script = ExtResource("2_ks02r")
+digit = "7"
+
+[node name="Value" type="Label" parent="SubCells/PencilCell7"]
+visible = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "7"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PencilCell8" type="Control" parent="SubCells"]
+custom_minimum_size = Vector2(23, 23)
+layout_mode = 2
+mouse_filter = 1
+script = ExtResource("2_ks02r")
+digit = "8"
+
+[node name="Value" type="Label" parent="SubCells/PencilCell8"]
+visible = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "8"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PencilCell9" type="Control" parent="SubCells"]
+custom_minimum_size = Vector2(23, 23)
+layout_mode = 2
+mouse_filter = 1
+script = ExtResource("2_ks02r")
+digit = "9"
+
+[node name="Value" type="Label" parent="SubCells/PencilCell9"]
+visible = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "9"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ValueLabel" type="Label" parent="."]
+visible = false
+custom_minimum_size = Vector2(69, 69)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "9"
+horizontal_alignment = 1
+vertical_alignment = 1

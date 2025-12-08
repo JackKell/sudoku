@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://coybg1a4whgwy"]
+
+[ext_resource type="Script" uid="uid://dk3ff7mcbywu6" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://kvpyuot646md" path="res://sudoku_board/sudoku_board.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://dxdtnri8sjva2" path="res://puzzles/sudoku_puzzle.gd" id="2_1bvp3"]
+[ext_resource type="Resource" uid="uid://d4iutqpo2t62g" path="res://puzzles/puzzle_1119.tres" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://doxmbdle7h55a" path="res://sudoku_board/sudoku_board_controller.gd" id="5_lquwl"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0xm2m")
+current_puzzle = ExtResource("2_h2yge")
+puzzles = Array[ExtResource("2_1bvp3")]([ExtResource("2_h2yge")])
+
+[node name="SudokuBoardController" type="Node" parent="." node_paths=PackedStringArray("sudoku_board")]
+script = ExtResource("5_lquwl")
+sudoku_board = NodePath("../SudokuBoard")
+
+[node name="SudokuBoard" parent="." instance=ExtResource("1_ig7tw")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 608.0
+offset_top = 69.00001
+offset_right = 1229.0
+offset_bottom = 690.0
+focus_mode = 2
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 449.0
+offset_top = 95.0
+offset_right = 573.0
+offset_bottom = 188.0
+
+[node name="ClearAllMarksButton" type="Button" parent="Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Clear All Marks"
+
+[node name="CurrentModeLabel" type="Label" parent="Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Marking"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ToggleModeButton" type="Button" parent="Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Toggle Mode"
+
+[node name="PuzzleList" type="ItemList" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 253.0
+grow_vertical = 2

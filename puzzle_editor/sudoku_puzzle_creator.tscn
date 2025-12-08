@@ -1,0 +1,71 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4j1f0ewlwxok"]
+
+[ext_resource type="Script" uid="uid://b7wulpcgaiek3" path="res://puzzle_editor/sudoku_puzzle_creator.gd" id="1_jfyng"]
+[ext_resource type="PackedScene" uid="uid://kvpyuot646md" path="res://sudoku_board/sudoku_board.tscn" id="2_elkth"]
+[ext_resource type="Script" uid="uid://doxmbdle7h55a" path="res://sudoku_board/sudoku_board_controller.gd" id="2_uyvfn"]
+
+[node name="SudokuPuzzleCreator" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jfyng")
+
+[node name="SudokuBoardController" type="Node" parent="." node_paths=PackedStringArray("sudoku_board")]
+script = ExtResource("2_uyvfn")
+sudoku_board = NodePath("../SudokuBoard")
+metadata/_custom_type_script = "uid://doxmbdle7h55a"
+
+[node name="SudokuBoard" parent="." instance=ExtResource("2_elkth")]
+layout_mode = 0
+offset_left = 357.0
+offset_top = 97.00001
+offset_right = 978.0
+offset_bottom = 718.0
+focus_mode = 2
+
+[node name="SideBar" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 23.0
+offset_top = -235.5
+offset_right = 235.0
+offset_bottom = 235.5
+grow_vertical = 2
+
+[node name="FilenameTextEdit" type="TextEdit" parent="SideBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+placeholder_text = "Filename"
+
+[node name="FilenameTextEditHelperText" type="Label" parent="SideBar"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="DeleteButton" type="Button" parent="SideBar"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Delete"
+
+[node name="SaveButton" type="Button" parent="SideBar"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Save"
+
+[node name="LoadButton" type="Button" parent="SideBar"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Load"
+
+[node name="FilesList" type="ItemList" parent="SideBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
