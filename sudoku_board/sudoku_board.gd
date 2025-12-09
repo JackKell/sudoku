@@ -18,7 +18,6 @@ extends Control
 var _cells: Array[SudokuCell] = []
 
 var _locked_cells: Array[SudokuCell] = []
-var _puzzle_cells: Array[SudokuCell] = []
 var _hovered_cell: SudokuCell
 
 func _ready() -> void:
@@ -39,7 +38,6 @@ func _draw() -> void:
 	for i in [3, 6]:
 		draw_line(Vector2(cell_size * i, 0), Vector2(cell_size * i, size.y), major_boarder_color, major_border_width)
 		draw_line(Vector2(0, cell_size * i), Vector2(size.x, cell_size * i), major_boarder_color, major_border_width)
-	
 	draw_rect(Rect2(Vector2.ZERO, size),  major_boarder_color, false, major_border_width)
 
 func mark(value: int) -> void:
@@ -60,7 +58,7 @@ func pencil(value: int) -> void:
 	if _hovered_cell.value == value:
 		_hovered_cell.clear_value()
 	else:
-		_hovered_cell.pencil_value(value)
+		_hovered_cell.pencil_value(value, !_hovered_cell.get_pencil_visible(value))
 
 func set_value_at_index(index: int, value: int) -> void:
 	var cell: SudokuCell = _cells.get(index)
@@ -70,6 +68,15 @@ func set_value_at_index(index: int, value: int) -> void:
 
 func set_value_at_coords(coords: Vector2i, value: int) -> void:
 	set_value_at_index(SudokuPuzzle.coords_to_index(coords), value)
+
+func set_pencil_at_coords(coords: Vector2i, value: int, vis: bool) -> void:
+	set_pencil_at_index(SudokuPuzzle.coords_to_index(coords), value, vis)
+
+func set_pencil_at_index(index: int, value: int, vis: bool) -> void:
+	var cell: SudokuCell = _cells.get(index)
+	if _locked_cells.has(cell):
+		return
+	cell.pencil_value(value, vis)
 		
 func clear_hovered() -> void:
 	if _hovered_cell == null:

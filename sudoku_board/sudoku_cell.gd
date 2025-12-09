@@ -47,14 +47,19 @@ func clear_value() -> void:
 
 func set_background_color(color: Color) -> void:
 	_background.color = color
-	
+
 func set_value_color(color: Color) -> void:
 	_value_label.set("theme_override_colors/font_color", color)
 
-func pencil_value(new_pencil_value: int) -> void:
+func get_pencil_visible(pencil_value: int) -> bool:
+	var sub_cell_index: int = pencil_value - 1
+	var sub_cell: PencilCell = _sub_cells.get(sub_cell_index)
+	return sub_cell.label.visible
+
+func pencil_value(new_pencil_value: int, vis: bool) -> void:
 	var sub_cell_index: int = new_pencil_value - 1
 	var sub_cell: PencilCell = _sub_cells.get(sub_cell_index)
-	sub_cell.label.visible = !sub_cell.label.visible
+	sub_cell.label.visible = vis
 	_sub_cells_grid.visible = true
 	_value_label.visible = false
 

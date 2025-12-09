@@ -91,7 +91,7 @@ func get_rows() -> Array[Array]:
 	return rows
 		
 func get_blocks() -> Array[Array]:
-	var blocks: Array = []
+	var blocks: Array[Array] = []
 	for block_index: int in range(WIDTH):
 		blocks.append(get_block(block_index))
 	return blocks
@@ -99,26 +99,47 @@ func get_blocks() -> Array[Array]:
 var is_compelted: bool:
 	get:
 		for column: Array in get_columns():
-			pass
-		return false
+			if !is_valid_sudoku_array(column):
+				return false
+		for row: Array in get_rows():
+			if !is_valid_sudoku_array(row):
+				return false
+		for block: Array in get_blocks():
+			if !is_valid_sudoku_array(block):
+				return false
+		return true
 		
-func get_column(index: int) -> Array[int]:
+func get_column(column_index: int) -> Array[int]:
 	var column: Array[int] = []
-	for i in range(WIDTH):
-		values.get(Vector2i(index, i), NULL_VALUE)
+	for row_index in range(WIDTH):
+		var value: int = values.get(Vector2i(column_index, row_index), NULL_VALUE)
+		if value != NULL_VALUE:
+			column.append(value)
 	return column
 
-func get_row(index: int) -> Array[int]:
+func get_row(row_index: int) -> Array[int]:
 	var row: Array[int] = []
-	for i in range(WIDTH):
-		values.get(Vector2i(index, i), NULL_VALUE)
+	for column_index in range(WIDTH):
+		var value: int = values.get(Vector2i(column_index, row_index), NULL_VALUE)
+		if value != NULL_VALUE:
+			row.append(value)
 	return row
 	
-func get_block(index: int) -> Array[int]:
+func get_block(block_index: int) -> Array[int]:
 	var block: Array[int] = []
-	for i in range(WIDTH):
-		values.get(Vector2i(index, i), NULL_VALUE)
+	for cell_index: int in block_indexes(block_index):
+		var value = get_value_at_index(cell_index)
+		if value != NULL_VALUE:
+			block.append(value)
 	return block
+	
+func get_family(cell_index: int) -> Array[int]:
+	var family: Array[int] = []
+	for index: int in family_indexes(cell_index):
+		var value: int = get_value_at_index(index)
+		if value != NULL_VALUE:
+			family.append(value)
+	return family
 
 func clear_value_at_index(index: int) -> void:
 	values.erase(index_to_coords(index))
