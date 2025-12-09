@@ -21,7 +21,7 @@ func solve(p: SudokuPuzzle):
 	
 	const VALUE: float = 1
 	
-	await pause(3)
+	await pause(2)
 	for x in range(SudokuPuzzle.WIDTH):
 		for y in range(SudokuPuzzle.WIDTH):
 			var coords: Vector2i = Vector2i(x, y)
@@ -30,15 +30,17 @@ func solve(p: SudokuPuzzle):
 			possibilities.set(coords, ALL.duplicate())
 			for value: int in ALL:
 				board.set_pencil_at_coords(coords, value, true)
-		await pause(0.5)
+		await pause(0.1)
 	
 	reduce_possibilities(solution, possibilities)
 	for i in range(10):
 		naked_singles(solution, possibilities)
 		hidden_single(solution, possibilities)
 		if solution.is_compelted:
+			prints("solved in", i + 1, "iterations")
 			break
 		await pause(VALUE)
+	
 
 func reduce_possibilities(solution: SudokuPuzzle, possibilities: Dictionary[Vector2i, Array]) -> void:
 	for coords: Vector2i in possibilities:
@@ -103,29 +105,6 @@ func set_value(
 	solution.set_value_at_coords(coords, value)
 	board.set_value_at_coords(coords, value)
 	reduce_family_possibilities(solution, possibilities, coords)
-
-func row_possibilites(row_index: int, possibilities: Dictionary[Vector2i, Array]) -> Array[Array]:
-	var r: Array[Array] = []
-	for column_index in range(SudokuPuzzle.WIDTH):
-		var coords = Vector2i(column_index, row_index)
-		if possibilities.has(coords):
-			r.append([column_index, possibilities.get(coords)])
-	return r
-
-func column_possibilites(column_index: int, possibilities: Dictionary[Vector2i, Array]) -> Array[Array]:
-	var r: Array[Array] = []
-	for row_index in range(SudokuPuzzle.WIDTH):
-		var coords = Vector2i(column_index, row_index)
-		if possibilities.has(coords):
-			r.append(possibilities.get(coords))
-	return r
-
-func count_possibilities(candidate_lists: Array[Array]) -> Dictionary[int, int]:
-	var result: Dictionary[int, int] = {}
-	for candidate_list in candidate_lists:
-		for candidate in candidate_list:
-			result.set(candidate, result.get_or_add(candidate, 0) + 1)
-	return result
 
 func pause(duration: float) -> void:
 	await get_tree().create_timer(duration).timeout
